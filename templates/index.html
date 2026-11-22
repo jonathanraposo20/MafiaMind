@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MafiaMind — Social Deduction Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="grain"></div><main class="shell">
+    <section id="welcome" class="screen welcome-screen">
+      <div class="eyebrow"><span class="signal"></span> AI SOCIAL DEDUCTION LAB / CASE 07</div>
+      <h1>Trust is a <em>variable.</em></h1>
+      <p class="lede">Five students. One hidden Mafia. Your questions become evidence; your evidence becomes a verdict.</p>
+      <div class="brief-grid"><div><strong>01</strong><span>Interrogate</span><small>Ask predefined questions shaped by personality.</small></div><div><strong>02</strong><span>Cross-check</span><small>Track suspicion, tells, and contradiction fragments.</small></div><div><strong>03</strong><span>Accuse</span><small>Commit before the case closes.</small></div></div>
+      <button id="startBtn" class="primary-btn">Open the case <span>→</span></button>
+      <p class="micro">OFFLINE ENGINE · MINIMAX + ALPHA-BETA PRUNING · NO EXTERNAL AI</p>
+    </section>
+
+    <section id="game" class="screen hidden">
+      <header class="topbar"><div class="brand"><span class="brand-mark">M</span><span>MAFIAMIND <small>FIELD NOTES</small></span></div><div class="case-meta"><span class="live-dot"></span> CASE ACTIVE <b id="turnLabel">00 / 12</b></div></header>
+      <div class="game-layout">
+        <aside class="sidebar"><div class="side-title"><span>SUSPECTS</span><span id="suspectCount">05</span></div><div id="suspectList" class="suspect-list"></div><div class="engine-card"><div class="engine-head"><span class="pulse"></span> AI ENGINE</div><strong>Minimax online</strong><small>Alpha-beta pruning enabled<br>Depth: 2 · offline mode</small></div></aside>
+        <section class="main-panel"><div class="panel-heading"><div><div class="eyebrow">INTERROGATION ROOM</div><h2 id="selectedName">Select a suspect</h2><p id="selectedTagline">Choose a profile to begin.</p></div><div class="risk-meter"><span>CASE HEAT</span><div><i id="heatBar"></i></div><b id="heatValue">0%</b></div></div>
+          <div id="profilePanel" class="profile-panel hidden"><div id="avatar" class="avatar">?</div><div class="profile-copy"><div class="profile-role" id="selectedRole"></div><p id="selectedBio"></p><div id="traitList" class="traits"></div></div><div class="tell"><span>KNOWN TELL</span><p id="selectedTell"></p></div></div>
+          <div id="analysisPanel" class="analysis-panel hidden"><div class="analysis-title"><span class="pulse"></span><span>AI DECISION ANALYSIS</span></div><div class="analysis-grid"><div><small>SELECTED STRATEGY</small><strong id="analysisStrategy">—</strong></div><div><small>SELECTED DEFENSE</small><strong id="analysisDefense">—</strong></div><div><small>EVALUATION</small><strong id="analysisValue">—</strong></div><div><small>SEARCH DEPTH</small><strong id="analysisDepth">—</strong></div><div><small>EVALUATED NODES</small><strong id="analysisNodes">—</strong></div><div><small>CUTOFF EVENTS</small><strong id="analysisPruned">—</strong></div><div><small>SKIPPED NODES</small><strong id="analysisPrunedNodes">—</strong></div></div></div>
+          <div id="conversation" class="conversation"><div class="empty-state"><span>⌕</span><p>Your notebook is blank.</p><small>Select a suspect and ask your first question.</small></div></div>
+          <div id="questionArea" class="question-area hidden"><div class="section-label">CHOOSE YOUR APPROACH</div><div id="questionGrid" class="question-grid"></div></div>
+        </section>
+        <aside class="evidence-panel"><div class="evidence-heading"><div><div class="eyebrow">CASE BOARD</div><h3>Evidence log</h3></div><span id="evidenceCount" class="count-badge">0</span></div><div id="evidenceList" class="evidence-list"><div class="empty-evidence">Clues will appear here<br>as you investigate.</div></div><button id="accuseBtn" class="accuse-btn" disabled>Make an accusation <span>↗</span></button><div class="score-strip"><span>DETECTIVE SCORE</span><b id="scoreValue">—</b></div></aside>
+      </div>
+    </section>
+
+    <section id="results" class="screen hidden results-screen"><div class="eyebrow">CASE CLOSED / FINAL REPORT</div><div id="resultKicker" class="result-kicker"></div><h1 id="resultTitle"></h1><p id="resultText" class="lede"></p><div class="result-stats"><div><span>FINAL SCORE</span><strong id="finalScore">0</strong></div><div><span>INTERROGATIONS</span><strong id="finalTurns">0</strong></div><div><span>THE MAFIA WAS</span><strong id="finalMafia">—</strong></div></div><button id="newGameBtn" class="primary-btn">Run a new case <span>↻</span></button></section>
+  </main><div id="toast" class="toast"></div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body></html>
